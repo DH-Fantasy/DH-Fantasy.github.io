@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="说明：在即时通信系列XMPP之搭建本地服务器中阐述了通过XAMPP、Openfire工具搭建基于XMPP的服务器端，并使用spark软件进行XMPP客户端的调试。在本文中主要阐述将XMPP添加到工程中，实现iOS中基于XMPP的即时通信。####项目环境配置　　使用CocoaPods导入XMPP框架，如果不会CocoaPods，点击CocoaPods安装及使用教程，或者手动导入XMPP框架。 ##">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS 即时通信系列之XMPP登入、注册、聊天">
+<meta property="og:url" content="http://example.com/2016/08/01/iOS%20%E5%8D%B3%E6%97%B6%E9%80%9A%E4%BF%A1%E7%B3%BB%E5%88%97%E4%B9%8BXMPP%E7%99%BB%E5%85%A5%E3%80%81%E6%B3%A8%E5%86%8C%E3%80%81%E8%81%8A%E5%A4%A9/index.html">
+<meta property="og:site_name" content="DH-Fantasy">
+<meta property="og:description" content="说明：在即时通信系列XMPP之搭建本地服务器中阐述了通过XAMPP、Openfire工具搭建基于XMPP的服务器端，并使用spark软件进行XMPP客户端的调试。在本文中主要阐述将XMPP添加到工程中，实现iOS中基于XMPP的即时通信。####项目环境配置　　使用CocoaPods导入XMPP框架，如果不会CocoaPods，点击CocoaPods安装及使用教程，或者手动导入XMPP框架。 ##">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1690826-41494ba1c8ffdb05.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1690826-5c3c541d33fa98c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1690826-cae7a70d1143df39.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1690826-943c7c9b89585e76.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="article:published_time" content="2016-08-01T08:32:09.000Z">
+<meta property="article:modified_time" content="2020-09-26T14:00:14.239Z">
+<meta property="article:author" content="DH-Fantasy">
+<meta property="article:tag" content="iOS">
+<meta property="article:tag" content="XMPP">
+<meta property="article:tag" content="即时通讯">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1690826-41494ba1c8ffdb05.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+<link rel="canonical" href="http://example.com/2016/08/01/iOS%20%E5%8D%B3%E6%97%B6%E9%80%9A%E4%BF%A1%E7%B3%BB%E5%88%97%E4%B9%8BXMPP%E7%99%BB%E5%85%A5%E3%80%81%E6%B3%A8%E5%86%8C%E3%80%81%E8%81%8A%E5%A4%A9/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>iOS 即时通信系列之XMPP登入、注册、聊天 | DH-Fantasy</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="DH-Fantasy" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DH-Fantasy</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">勇于探索未知领域，不断提升自己。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2016/08/01/iOS%20%E5%8D%B3%E6%97%B6%E9%80%9A%E4%BF%A1%E7%B3%BB%E5%88%97%E4%B9%8BXMPP%E7%99%BB%E5%85%A5%E3%80%81%E6%B3%A8%E5%86%8C%E3%80%81%E8%81%8A%E5%A4%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="DH-Fantasy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DH-Fantasy">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          iOS 即时通信系列之XMPP登入、注册、聊天
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-01 16:32:09" itemprop="dateCreated datePublished" datetime="2016-08-01T16:32:09+08:00">2016-08-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>说明：在<a target="_blank" rel="noopener" href="http://www.jianshu.com/p/7c80a61c8de6">即时通信系列XMPP之搭建本地服务器</a>中阐述了通过XAMPP、Openfire工具搭建基于XMPP的服务器端，并使用spark软件进行XMPP客户端的调试。在本文中主要阐述将XMPP添加到工程中，实现iOS中基于XMPP的即时通信。<br>####项目环境配置<br>　　使用CocoaPods导入XMPP框架，如果不会CocoaPods，点击<a target="_blank" rel="noopener" href="http://www.jianshu.com/p/5c66c0c1ee87">CocoaPods安装及使用教程</a>，或者<a target="_blank" rel="noopener" href="http://www.jianshu.com/p/e2d018758842">手动导入XMPP框架</a>。</p>
+<p>####创建XMPP管理类<br>　　为了让XMPP不会对工程中其它业务代码具有侵入性，方便我们管理整个关于XMPP的逻辑处理，通常会采用单例模式新建一个专门的管理类，为此，在工程中创建一个继承自NSObject的XMPPManger，为了能够在代码中方便调用XMPPStreamDelegate的方法，让其遵守XMPPStreamDelegate协议。<br>　　XMPP框架中所有的连接、登入、注册、授权、失去连接等操作的回调都是通过XMPPStream来管理，所以XMPPManger必须有一个XMPPStream实例。其它的还包括进行添加好友、删除好友、获取好友列表等功能的XMPPRoster；消息保存组件XMPPMessageArchiving等。</p>
+<p>######XMPPManager.h</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">@interface XMPPManager : NSObject&lt;XMPPStreamDelegate&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> *  创建全局唯一的管理者对象</span><br><span class="line"> *  @return 返回一个单例对象</span><br><span class="line"> *&#x2F;</span><br><span class="line">+ (XMPPManager *)sharedXMPPManager;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> *  信息管道</span><br><span class="line"> *&#x2F;</span><br><span class="line">@property (nonatomic,strong)XMPPStream *stream;</span><br><span class="line">&#x2F;**</span><br><span class="line"> *  进行添加好友 删除好友 获取好友列表等功能</span><br><span class="line"> *&#x2F;</span><br><span class="line">@property (nonatomic,strong)XMPPRoster *roster;</span><br><span class="line">&#x2F;**</span><br><span class="line"> *  消息保存组件</span><br><span class="line"> *&#x2F;</span><br><span class="line">@property (nonatomic,strong)XMPPMessageArchiving *messageArchiving;</span><br><span class="line">&#x2F;**</span><br><span class="line"> *  消息保存组件的CoreData上下文</span><br><span class="line"> *&#x2F;</span><br><span class="line">@property (nonatomic,strong)NSManagedObjectContext *managerObjectContext;</span><br><span class="line">&#x2F;**</span><br><span class="line"> *  登入</span><br><span class="line"> *</span><br><span class="line"> *  @param userName 账户</span><br><span class="line"> *  @param password 密码</span><br><span class="line"> *&#x2F;</span><br><span class="line">- (void)loginWithUserName:(NSString *)userName password:(NSString *)password;</span><br><span class="line">&#x2F;**</span><br><span class="line"> *  注册</span><br><span class="line"> *</span><br><span class="line"> *  @param userName 账户</span><br><span class="line"> *  @param password 密码</span><br><span class="line"> *&#x2F;</span><br><span class="line">- (void)registWithUserName:(NSString *)userName password:(NSString *)password;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+
+<p>######XMPPManager.m</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;服务器的地址</span><br><span class="line">static NSString *const kHostName &#x3D; @&quot;127.0.0.1&quot;;</span><br><span class="line">&#x2F;&#x2F;端口号</span><br><span class="line">static UInt16 const kHostPort &#x3D; 5222;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;连接服务器类型</span><br><span class="line">typedef NS_ENUM(NSUInteger,ConnectToServerStatus) &#123;</span><br><span class="line">    ConnectToServerStatusLogin,</span><br><span class="line">    ConnectToServerStatusRegist,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">@interface XMPPManager ()</span><br><span class="line">&#x2F;&#x2F;登入密码</span><br><span class="line">@property (nonatomic,strong)NSString *loginpassword;</span><br><span class="line">&#x2F;&#x2F;注册密码</span><br><span class="line">@property (nonatomic,strong)NSString *registpassword;</span><br><span class="line">&#x2F;&#x2F;是登入还是注册</span><br><span class="line">@property (nonatomic,assign)ConnectToServerStatus connectToSercerStatus;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation XMPPManager</span><br><span class="line"></span><br><span class="line">+ (XMPPManager *)sharedXMPPManager&#123;</span><br><span class="line">    static XMPPManager *xmppManager &#x3D; nil;</span><br><span class="line">    static dispatch_once_t token;</span><br><span class="line">    dispatch_once(&amp;token, ^&#123;</span><br><span class="line">        xmppManager &#x3D; [[XMPPManager alloc] init];</span><br><span class="line">    &#125;);</span><br><span class="line">    return xmppManager;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (instancetype)init&#123;</span><br><span class="line">    if ([super init]) &#123;</span><br><span class="line">        &#x2F;&#x2F;设置通信管道属性</span><br><span class="line">        self.stream &#x3D; [[XMPPStream alloc] init];</span><br><span class="line">        self.stream.hostName &#x3D; kHostName;</span><br><span class="line">        self.stream.hostPort &#x3D; kHostPort;</span><br><span class="line">        &#x2F;&#x2F;设置当前对象为stream的代理</span><br><span class="line">        [self.stream addDelegate:self delegateQueue:dispatch_get_main_queue()];</span><br><span class="line">        </span><br><span class="line">        &#x2F;&#x2F;进行好友存储</span><br><span class="line">        XMPPRosterCoreDataStorage *rosterStorage &#x3D; [XMPPRosterCoreDataStorage sharedInstance];</span><br><span class="line">        self.roster &#x3D; [[XMPPRoster alloc] initWithRosterStorage:rosterStorage dispatchQueue:dispatch_get_main_queue()];</span><br><span class="line">        &#x2F;&#x2F;激活</span><br><span class="line">        [self.roster activate:self.stream];</span><br><span class="line">        </span><br><span class="line">        &#x2F;&#x2F;进行聊天信息存储</span><br><span class="line">        XMPPMessageArchivingCoreDataStorage *messageArchivingStorage &#x3D; [XMPPMessageArchivingCoreDataStorage sharedInstance];</span><br><span class="line">        self.messageArchiving &#x3D; [[XMPPMessageArchiving alloc] initWithMessageArchivingStorage:messageArchivingStorage dispatchQueue:dispatch_get_main_queue()];</span><br><span class="line">        [self.messageArchiving activate:self.stream];</span><br><span class="line">        </span><br><span class="line">        self.managerObjectContext &#x3D; messageArchivingStorage.mainThreadManagedObjectContext;</span><br><span class="line">    &#125;</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;与服务器建立链接</span><br><span class="line">-(void)connectToServerWithUser:(NSString *)user&#123;</span><br><span class="line">    &#x2F;&#x2F;要是正在链接的话那么就先断开连接</span><br><span class="line">    if ([self.stream isConnected]) &#123;</span><br><span class="line">        [self disconnectServer];</span><br><span class="line">    &#125;</span><br><span class="line">    XMPPJID *jid &#x3D; [XMPPJID jidWithUser:user domain:@&quot;DH_Fantasy&quot; resource:@&quot;iPhone&quot;];</span><br><span class="line">    self.stream.myJID &#x3D; jid;</span><br><span class="line">    NSError *error &#x3D; nil;</span><br><span class="line">    [self.stream connectWithTimeout:30.0f error:&amp;error];</span><br><span class="line">    if (nil !&#x3D; error) &#123;</span><br><span class="line">        NSLog(@&quot;%s__%d__链接出错：%@&quot;,__FUNCTION__,__LINE__,error);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;与服务器断开链接</span><br><span class="line">-(void)disconnectServer&#123;</span><br><span class="line">    [self.stream disconnect];</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;登入</span><br><span class="line">- (void)loginWithUserName:(NSString *)userName password:(NSString *)password&#123;</span><br><span class="line">    self.connectToSercerStatus &#x3D; ConnectToServerStatusLogin;</span><br><span class="line">    self.loginpassword &#x3D; password;&#x2F;&#x2F;将传进来的password传给self.password</span><br><span class="line">    [self connectToServerWithUser:userName];</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;注册</span><br><span class="line">- (void)registWithUserName:(NSString *)userName password:(NSString *)password&#123;</span><br><span class="line">    self.connectToSercerStatus &#x3D; ConnectToServerStatusRegist;</span><br><span class="line">    self.registpassword &#x3D; password;</span><br><span class="line">    [self connectToServerWithUser:userName];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark XMPPStreamDelegate</span><br><span class="line">&#x2F;&#x2F;与服务器链接成功</span><br><span class="line">-(void)xmppStreamDidConnect:(XMPPStream *)sender&#123;</span><br><span class="line">#pragma mark 判断与服务器建立连接是登陆还是注册</span><br><span class="line">    switch (self.connectToSercerStatus) &#123;</span><br><span class="line">        case ConnectToServerStatusLogin:</span><br><span class="line">        &#123;</span><br><span class="line">            NSError *error &#x3D; nil;</span><br><span class="line">            [self.stream authenticateWithPassword:self.loginpassword error:&amp;error];</span><br><span class="line">            if (nil !&#x3D; error) &#123;</span><br><span class="line">                NSLog(@&quot;%s__%d__验证出错：%@&quot;,__FUNCTION__,__LINE__,error);</span><br><span class="line">            &#125;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">        case ConnectToServerStatusRegist:</span><br><span class="line">        &#123;</span><br><span class="line">            NSError *err &#x3D; nil;</span><br><span class="line">            [self.stream registerWithPassword:self.registpassword error:&amp;err];</span><br><span class="line">            if (nil !&#x3D; err) &#123;</span><br><span class="line">                NSLog(@&quot;%s__%d__注册出错：%@&quot;,__FUNCTION__,__LINE__,err);</span><br><span class="line">            &#125;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">        default:</span><br><span class="line">            break;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;与服务器链接失败</span><br><span class="line">-(void)xmppStreamConnectDidTimeout:(XMPPStream *)sender&#123;</span><br><span class="line">    NSLog(@&quot;😂与服务器链接失败&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)xmppStreamWillConnect:(XMPPStream *)sender &#123;</span><br><span class="line">    NSLog(@&quot;🔌socket正在连接...&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)xmppStream:(XMPPStream *)sender socketDidConnect:(GCDAsyncSocket *)socket &#123;</span><br><span class="line">    NSLog(@&quot;🍎socket连接成功&quot;);</span><br><span class="line">    &#x2F;&#x2F; 连接成功之后，由客户端xmpp发送一个stream包给服务器，服务器监听来自客户端的stream包，并返回stream feature包</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(NSXMLElement *)error &#123;</span><br><span class="line">    NSLog(@&quot;😂xmpp授权失败:%@&quot;, error.description);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)xmppStreamDidAuthenticate:(XMPPStream *)sender &#123;</span><br><span class="line">    NSLog(@&quot;🍎xmpp授权成功。&quot;);</span><br><span class="line">    &#x2F;&#x2F; 只有进入到这里，才算是真正的可以聊天了</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error &#123;</span><br><span class="line">    NSLog(@&quot;😂xmpp失去连接。&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+
+<p>####AppDelegate<br>　　在AppDelegate中主要设置了下进入APP时的登入状态，在一些场景中，某些控制器必须为登入状态才能进入，用NSUserDefaults存储为Bool类型，这为判断是否登入提供了方便。</p>
+<p>######AppDelegate.m</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions &#123;</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;设置主窗口并显示</span><br><span class="line">    self.window &#x3D; [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];</span><br><span class="line">    self.window.backgroundColor &#x3D; [UIColor whiteColor];</span><br><span class="line">    [self.window makeKeyAndVisible];</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;设置进入APP为没登入状态</span><br><span class="line">    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@&quot;isLoginStatus&quot;];</span><br><span class="line">    [[NSUserDefaults standardUserDefaults] synchronize];</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;设置好友列表控制器为根视图</span><br><span class="line">    RosterTableViewController *VC &#x3D; [[RosterTableViewController alloc] init];</span><br><span class="line">    UINavigationController *NC &#x3D; [[UINavigationController alloc] initWithRootViewController:VC];</span><br><span class="line">    self.window.rootViewController &#x3D; NC;</span><br><span class="line">    </span><br><span class="line">    return YES;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>####RosterTableViewController<br>　　RosterTableViewController主要作用就是进行自动登入与显示获取到的好友。</p>
+<p>######RosterTableViewController.m</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line">@interface RosterTableViewController ()</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;用于保存获取到的好友</span><br><span class="line">@property (nonatomic,strong)NSMutableArray *rosterArray;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation RosterTableViewController</span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    </span><br><span class="line">    self.title &#x3D; @&quot;好友列表&quot;;</span><br><span class="line">    </span><br><span class="line">    self.rosterArray &#x3D; [[NSMutableArray alloc] init];</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;判断之前是否登入过</span><br><span class="line">    if (nil !&#x3D; [[NSUserDefaults standardUserDefaults]objectForKey:@&quot;userName&quot;]) &#123;</span><br><span class="line">        </span><br><span class="line">        &#x2F;&#x2F;之前登入过，直接读取用户名和密码进行连接</span><br><span class="line">        NSString *userName &#x3D; [[NSUserDefaults standardUserDefaults]objectForKey:@&quot;userName&quot;];</span><br><span class="line">        NSString *password &#x3D; [[NSUserDefaults standardUserDefaults]objectForKey:@&quot;password&quot;];</span><br><span class="line">        [[XMPPManager sharedXMPPManager]loginWithUserName:userName password:password];</span><br><span class="line">        [[XMPPManager sharedXMPPManager].stream addDelegate:self delegateQueue:dispatch_get_main_queue()];</span><br><span class="line">        </span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        </span><br><span class="line">        &#x2F;&#x2F;之前没登入过则进入到登入窗口</span><br><span class="line">        UIStoryboard *storyboard &#x3D; [UIStoryboard storyboardWithName:@&quot;Main&quot; bundle:nil];</span><br><span class="line">        LoginViewController *loginVC &#x3D; [storyboard instantiateViewControllerWithIdentifier:@&quot;login&quot;];</span><br><span class="line">        </span><br><span class="line">        [self.navigationController pushViewController:loginVC animated:YES];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    [[XMPPManager sharedXMPPManager].roster addDelegate:self delegateQueue:dispatch_get_main_queue()];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark UITableViewDataSource</span><br><span class="line">- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView &#123;</span><br><span class="line">    return 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section &#123;</span><br><span class="line">    return self.rosterArray.count;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath &#123;</span><br><span class="line">    </span><br><span class="line">    UITableViewCell *cell &#x3D; [tableView dequeueReusableCellWithIdentifier:@&quot;cell&quot;];</span><br><span class="line">    if (!cell) &#123;</span><br><span class="line">        cell &#x3D; [[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@&quot;cell&quot;];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    XMPPJID *jid &#x3D; self.rosterArray[indexPath.row];</span><br><span class="line">    cell.textLabel.text &#x3D; jid.user;</span><br><span class="line">    </span><br><span class="line">    return cell;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark 进入聊天界面</span><br><span class="line">- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath&#123;</span><br><span class="line">    XMPPJID *jid &#x3D; self.rosterArray[indexPath.row];</span><br><span class="line">    ChatViewController *chat &#x3D; [[ChatViewController alloc] init];</span><br><span class="line">    chat.chatToJid &#x3D; jid;</span><br><span class="line">    [self.navigationController pushViewController:chat animated:YES];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark XMPPStreamDelegate</span><br><span class="line">&#x2F;&#x2F;授权成功</span><br><span class="line">- (void)xmppStreamDidAuthenticate:(XMPPStream *)sender&#123;</span><br><span class="line">    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@&quot;isLoginStatus&quot;];</span><br><span class="line">    </span><br><span class="line">    [[NSUserDefaults standardUserDefaults] synchronize];</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;我们验证之后默认的状态是离线的 于是我们想显示在线，需要告诉服务器自己的状态</span><br><span class="line">    XMPPPresence *presence &#x3D; [XMPPPresence presenceWithType:@&quot;available&quot;];</span><br><span class="line">    [[XMPPManager sharedXMPPManager].stream sendElement:presence];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;验证失败</span><br><span class="line">-(void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(DDXMLElement *)error&#123;</span><br><span class="line">    NSLog(@&quot;登入验证失败😂&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark XMPPRosterDelegate</span><br><span class="line">&#x2F;&#x2F;刚开始获取好友列表</span><br><span class="line">-(void)xmppRosterDidBeginPopulating:(XMPPRoster *)sender&#123;</span><br><span class="line">    NSLog(@&quot;开始获取好友列表&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;正在获取好友列表</span><br><span class="line">-(void)xmppRoster:(XMPPRoster *)sender didReceiveRosterItem:(DDXMLElement *)item&#123;</span><br><span class="line">    NSLog(@&quot;正在获取好友列表...%@&quot;,item);</span><br><span class="line">    NSString *jidStr &#x3D; [[item attributeForName:@&quot;jid&quot;]stringValue];</span><br><span class="line">    XMPPJID *jid &#x3D;[XMPPJID jidWithString:jidStr];</span><br><span class="line">    [self.rosterArray addObject:jid];</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;将数据添加进数组</span><br><span class="line">    [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.rosterArray.count-1 inSection:0]] withRowAnimation:UITableViewRowAnimationLeft];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;已经完成好友列表获取</span><br><span class="line">-(void)xmppRosterDidEndPopulating:(XMPPRoster *)sender&#123;</span><br><span class="line">    NSLog(@&quot;已经完成好友列表获取🍅&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="http://upload-images.jianshu.io/upload_images/1690826-41494ba1c8ffdb05.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Friends List.png"></p>
+<p>####LoginViewController<br>　　LoginViewController中使用XMPPManager单例在登入按钮的点击事件中调用<code>- (void)loginWithUserName:(NSString ***)userName password:(NSString *)password;</code>方法进行登入。</p>
+<p>######LoginViewController.m</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">@interface LoginViewController ()</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;登入账户</span><br><span class="line">@property (weak, nonatomic) IBOutlet UITextField *userName;</span><br><span class="line">&#x2F;&#x2F;登入密码</span><br><span class="line">@property (weak, nonatomic) IBOutlet UITextField *password;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation LoginViewController</span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    </span><br><span class="line">    [[XMPPManager sharedXMPPManager].stream addDelegate:self delegateQueue:dispatch_get_main_queue()];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;登入操作</span><br><span class="line">- (IBAction)loginAction:(id)sender &#123;</span><br><span class="line">    [[XMPPManager sharedXMPPManager] loginWithUserName:self.userName.text password:self.password.text];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark XMPPStreamDelegte</span><br><span class="line">&#x2F;&#x2F;验证成功</span><br><span class="line">- (void)xmppStreamDidAuthenticate:(XMPPStream *)sender&#123;</span><br><span class="line">    &#x2F;&#x2F;存储账户密码用于下次自动登入</span><br><span class="line">    [[NSUserDefaults standardUserDefaults] setObject:self.userName.text forKey:@&quot;userName&quot;];</span><br><span class="line">    [[NSUserDefaults standardUserDefaults] setObject:self.password.text forKey:@&quot;password&quot;];</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;改变APP的登入状态</span><br><span class="line">    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@&quot;isLoginStatus&quot;];</span><br><span class="line">    [[NSUserDefaults standardUserDefaults] synchronize];</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;验证之后默认的状态为离线，需要手动告诉服务器自己的状态</span><br><span class="line">    XMPPPresence *presence &#x3D; [XMPPPresence presenceWithType:@&quot;available&quot;];</span><br><span class="line">    [[XMPPManager sharedXMPPManager].stream sendElement:presence];</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;返回到根视图</span><br><span class="line">    [self.navigationController popToRootViewControllerAnimated:YES];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;验证失败</span><br><span class="line">-(void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(DDXMLElement *)error&#123;</span><br><span class="line">    NSLog(@&quot;登入验证失败😂&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://upload-images.jianshu.io/upload_images/1690826-5c3c541d33fa98c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="LoginViewController.png"></p>
+<p>####RegisterViewController<br>　　注册和登入比较相似，只需在注册按钮的点击事件中使用XMPPManager单例调用<code>- (void)registWithUserName:(NSString *)userName password:(NSString *)password;</code>方法进行注册。</p>
+<p>######RegisterViewController.m</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">@interface RegisterViewController ()</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;注册账户</span><br><span class="line">@property (weak, nonatomic) IBOutlet UITextField *userName;</span><br><span class="line">&#x2F;&#x2F;注册密码</span><br><span class="line">@property (weak, nonatomic) IBOutlet UITextField *password;</span><br><span class="line">&#x2F;&#x2F;密码验证</span><br><span class="line">@property (weak, nonatomic) IBOutlet UITextField *rePassword;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation RegisterViewController</span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    </span><br><span class="line">    [[XMPPManager sharedXMPPManager].stream addDelegate:self delegateQueue:dispatch_get_main_queue()];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (IBAction)registerAction:(id)sender &#123;</span><br><span class="line">    &#x2F;&#x2F;简单验证：用户名不为空且密码和密码验证输入一致</span><br><span class="line">    if (![self.userName.text isEqualToString:@&quot;&quot;] &amp;&amp; [self.rePassword.text isEqualToString:self.password.text]) &#123;</span><br><span class="line">        [[XMPPManager sharedXMPPManager] registWithUserName:self.userName.text password:self.password.text];</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        UIAlertController *alertController &#x3D; [UIAlertController alertControllerWithTitle:@&quot;注册失败&quot; message:@&quot;&quot; preferredStyle:(UIAlertControllerStyleAlert)];</span><br><span class="line">        </span><br><span class="line">        if ([self.userName.text isEqualToString:@&quot;&quot;]) &#123;</span><br><span class="line">            alertController.title &#x3D; @&quot;账户为空&quot;;</span><br><span class="line">            alertController.message &#x3D; @&quot;请输入账户&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        if (![self.rePassword.text isEqualToString:self.password.text]) &#123;</span><br><span class="line">            alertController.title &#x3D; @&quot;密码验证错误&quot;;</span><br><span class="line">            alertController.message &#x3D; @&quot;请重新输入密码验证&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        UIAlertAction *okAction &#x3D; [UIAlertAction actionWithTitle:@&quot;OK&quot; style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) &#123;</span><br><span class="line">            [alertController dismissViewControllerAnimated:YES completion:nil];</span><br><span class="line">        &#125;];</span><br><span class="line">        </span><br><span class="line">        [alertController addAction:okAction];</span><br><span class="line">        [self presentViewController:alertController animated:YES completion:nil];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark--XMPPStreamDelegate</span><br><span class="line">&#x2F;&#x2F;注册成功</span><br><span class="line">-(void)xmppStreamDidRegister:(XMPPStream *)sender&#123;</span><br><span class="line">    NSLog(@&quot;%s__%d__注册成功&quot;,__FUNCTION__,__LINE__);</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;存储账户密码用于下次自动登入</span><br><span class="line">    [[NSUserDefaults standardUserDefaults] setObject:self.userName.text forKey:@&quot;userName&quot;];</span><br><span class="line">    [[NSUserDefaults standardUserDefaults] setObject:self.password.text forKey:@&quot;password&quot;];</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;改变APP的登入状态</span><br><span class="line">    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@&quot;isLoginStatus&quot;];</span><br><span class="line">    [[NSUserDefaults standardUserDefaults] synchronize];</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;验证之后默认的状态为离线，需要手动告诉服务器自己的状态</span><br><span class="line">    XMPPPresence *presence &#x3D; [XMPPPresence presenceWithType:@&quot;available&quot;];</span><br><span class="line">    [[XMPPManager sharedXMPPManager].stream sendElement:presence];</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;注册成功之后返回到登陆界面</span><br><span class="line">    [self.navigationController popToRootViewControllerAnimated:YES];</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;注册失败</span><br><span class="line">-(void)xmppStream:(XMPPStream *)sender didNotRegister:(DDXMLElement *)error&#123;</span><br><span class="line">    NSLog(@&quot;%s__%d__注册失败%@&quot;,__FUNCTION__,__LINE__,error);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p><img src="http://upload-images.jianshu.io/upload_images/1690826-cae7a70d1143df39.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="RegisterViewController.png"></p>
+<p>####ChatViewController<br>　　在ChatViewController中需要公开一个属性，用来接收好友列表页面传来的XMPPJID。<br>######ChatViewController.h</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@interface ChatViewController : UIViewController</span><br><span class="line"></span><br><span class="line">@property (nonatomic,strong)XMPPJID *chatToJid;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>######ChatViewController.m</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br></pre></td><td class="code"><pre><span class="line">@interface ChatViewController ()&lt;UITableViewDataSource,UITableViewDelegate&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;显示消息</span><br><span class="line">@property (weak, nonatomic) IBOutlet UITableView *messageContent;</span><br><span class="line">&#x2F;&#x2F;消息输入框</span><br><span class="line">@property (weak, nonatomic) IBOutlet UITextView *messageTextView;</span><br><span class="line">&#x2F;&#x2F;键盘底部约束</span><br><span class="line">@property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageTextfieldConstraint;</span><br><span class="line">&#x2F;&#x2F;存储消息数据</span><br><span class="line">@property (nonatomic,strong) NSMutableArray *allMessageArray;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation ChatViewController</span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    </span><br><span class="line">    self.messageTextView.text &#x3D; @&quot;&quot;;</span><br><span class="line"></span><br><span class="line">    self.messageContent.delegate &#x3D; self;</span><br><span class="line">    self.messageContent.dataSource &#x3D; self;</span><br><span class="line">    </span><br><span class="line">    self.allMessageArray &#x3D; [[NSMutableArray alloc] init];</span><br><span class="line">    &#x2F;&#x2F;将历史消息加入到数组</span><br><span class="line">    [self.allMessageArray addObjectsFromArray:[self fromDataBaseFetchResult]];</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;监听键盘frame的改变</span><br><span class="line">    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(kbFrameWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];</span><br><span class="line">    </span><br><span class="line">    [[XMPPManager sharedXMPPManager].stream addDelegate:self delegateQueue:dispatch_get_main_queue()];</span><br><span class="line">    </span><br><span class="line">    [self reloadMessage];</span><br><span class="line">    </span><br><span class="line">    self.messageContent.separatorStyle &#x3D; UITableViewCellSeparatorStyleNone;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;消息发送按钮</span><br><span class="line">- (IBAction)sendMessageAction:(id)sender &#123;</span><br><span class="line">    XMPPMessage *message &#x3D; [XMPPMessage messageWithType:@&quot;chat&quot; to:self.chatToJid];</span><br><span class="line">    &#x2F;&#x2F;要发送的消息添加到Body</span><br><span class="line">    [message addBody:self.messageTextView.text];</span><br><span class="line">    &#x2F;&#x2F;发送消息</span><br><span class="line">    [[XMPPManager sharedXMPPManager].stream sendElement:message];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;键盘即将改变frame</span><br><span class="line">- (void)kbFrameWillChange:(NSNotification *)noti&#123;</span><br><span class="line">    &#x2F;&#x2F;获取窗口的高度</span><br><span class="line">    CGFloat windowH &#x3D; [UIScreen mainScreen].bounds.size.height;</span><br><span class="line">    &#x2F;&#x2F;键盘结束的frm</span><br><span class="line">    CGRect kbEndFrm &#x3D; [noti.userInfo [UIKeyboardFrameEndUserInfoKey]CGRectValue];</span><br><span class="line">    &#x2F;&#x2F;键盘结束的y值</span><br><span class="line">    CGFloat kbEndY &#x3D; kbEndFrm.origin.y;</span><br><span class="line">    self.messageTextfieldConstraint.constant &#x3D; windowH - kbEndY;</span><br><span class="line">    </span><br><span class="line">    [self scrollsToBottomAnimated:YES];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)scrollsToBottomAnimated:(BOOL)animated&#123;</span><br><span class="line">    CGFloat offset &#x3D; self.messageContent.contentSize.height - self.messageTextfieldConstraint.constant - 55;</span><br><span class="line">    if (offset &gt; 0)&#123;</span><br><span class="line">        [self.messageContent setContentOffset:CGPointMake(0, offset) animated:animated];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark XMPPStreamDelegate</span><br><span class="line">&#x2F;&#x2F;发送信息成功</span><br><span class="line">-(void)xmppStream:(XMPPStream *)sender didSendMessage:(XMPPMessage *)message&#123;</span><br><span class="line">    NSLog(@&quot;发送成功🍅&quot;);</span><br><span class="line">    [self reloadMessage];&#x2F;&#x2F;发送信息时刷新一次页面</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;发送信息失败</span><br><span class="line">-(void)xmppStream:(XMPPStream *)sender didFailToSendMessage:(XMPPMessage *)message error:(NSError *)error&#123;</span><br><span class="line">    NSLog(@&quot;发送失败⚠️&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;收到信息</span><br><span class="line">-(void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message&#123;</span><br><span class="line">    NSLog(@&quot;收到消息%@&quot;,message);</span><br><span class="line">    if ([message isChatMessageWithBody]) &#123;</span><br><span class="line">        [self reloadMessage];&#x2F;&#x2F;收到信息是刷新一次页面</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark 加载聊天信息</span><br><span class="line">-(void)reloadMessage&#123;</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;从数据库读取数据</span><br><span class="line">    NSArray *fetchedObjects &#x3D; [self fromDataBaseFetchResult];</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 清空消息数组里的所有数据</span><br><span class="line">    [self.allMessageArray removeAllObjects];</span><br><span class="line">    &#x2F;&#x2F; 将新的聊天记录添加到数组中</span><br><span class="line">    [self.allMessageArray addObjectsFromArray:fetchedObjects];</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;将信息加载到tableView上</span><br><span class="line">    [self.messageContent reloadData];</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;加载时滚动到最底部</span><br><span class="line">    [self scrollToBottomWithAnimated:YES];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;从数据库读取数据</span><br><span class="line">- (NSArray *)fromDataBaseFetchResult&#123;</span><br><span class="line">    &#x2F;&#x2F;1.上下文</span><br><span class="line">    NSManagedObjectContext *managerObjectContext &#x3D;[XMPPManager sharedXMPPManager].managerObjectContext;</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;2.创建查询请求</span><br><span class="line">    NSFetchRequest *fetchRequest &#x3D; [NSFetchRequest fetchRequestWithEntityName:@&quot;XMPPMessageArchiving_Message_CoreDataObject&quot;];</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;3.设置过滤条件(提取当前用户jid,好友jid)</span><br><span class="line">    NSPredicate *predicate &#x3D; [NSPredicate predicateWithFormat:@&quot;bareJidStr &#x3D;&#x3D; %@ And streamBareJidStr &#x3D;&#x3D; %@&quot;, self.chatToJid.bare,[XMPPManager sharedXMPPManager].stream.myJID.bare];</span><br><span class="line">    fetchRequest.predicate &#x3D; predicate;</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;4.设置排序(时间升序)</span><br><span class="line">    NSSortDescriptor *sortDescriptor &#x3D; [[NSSortDescriptor alloc] initWithKey:@&quot;timestamp&quot; ascending:YES];</span><br><span class="line">    fetchRequest.sortDescriptors &#x3D; @[sortDescriptor];</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;5.执行请求</span><br><span class="line">    NSError *error &#x3D; nil;</span><br><span class="line">    NSArray *fetchedResult &#x3D; [managerObjectContext executeFetchRequest:fetchRequest error:&amp;error];</span><br><span class="line">    </span><br><span class="line">    return fetchedResult;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;滚动到最底部</span><br><span class="line">- (void)scrollToBottomWithAnimated:(BOOL)animated&#123;</span><br><span class="line">    </span><br><span class="line">    if (animated &amp;&amp; [self.messageContent numberOfSections] &gt; 0) &#123;</span><br><span class="line">        </span><br><span class="line">        NSInteger lastSectionIndex &#x3D; [self.messageContent numberOfSections] - 1;</span><br><span class="line">        NSInteger lastRowIndex &#x3D; [self.messageContent numberOfRowsInSection:lastSectionIndex] - 1;</span><br><span class="line">        </span><br><span class="line">        if (lastRowIndex &gt; 0) &#123;</span><br><span class="line">            </span><br><span class="line">            NSIndexPath *lastIndexPath &#x3D; [NSIndexPath indexPathForRow:lastRowIndex inSection:lastSectionIndex];</span><br><span class="line">            [self.messageContent scrollToRowAtIndexPath:lastIndexPath atScrollPosition: UITableViewScrollPositionBottom animated:animated];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark UITableViewDataSourceDelegate</span><br><span class="line">- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section&#123;</span><br><span class="line">    return self.allMessageArray.count;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath&#123;</span><br><span class="line">    </span><br><span class="line">    UITableViewCell *cell &#x3D; [tableView dequeueReusableCellWithIdentifier:@&quot;cell&quot;];</span><br><span class="line">    if (nil &#x3D;&#x3D; cell) &#123;</span><br><span class="line">        cell &#x3D; [[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleValue1) reuseIdentifier:@&quot;cell&quot;];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    XMPPMessageArchiving_Message_CoreDataObject *chatMessage &#x3D; self.allMessageArray[indexPath.row];</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;判断聊天信息是发出去的 还是接受进来的，在cell上显示不一样的样式</span><br><span class="line">    if (chatMessage.isOutgoing &#x3D;&#x3D; YES) &#123;</span><br><span class="line">        cell.detailTextLabel.text &#x3D; chatMessage.body;</span><br><span class="line">        cell.textLabel.text &#x3D; @&quot;&quot;;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        cell.textLabel.text &#x3D; chatMessage.body;</span><br><span class="line">        cell.detailTextLabel.text &#x3D; @&quot;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    self.messageTextView.text &#x3D; @&quot;&quot;;</span><br><span class="line">    </span><br><span class="line">    return cell;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://upload-images.jianshu.io/upload_images/1690826-943c7c9b89585e76.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Use Test_XMPP And Spark Chat.png"></p>
+<p>　　以上就是将XMPP添加到工程，实现基于XMPP的登入、注册、聊天功能，还有一大批别的功能有待探索，之后将进行持续的更新。</p>
+<p>####总结<br>1.XMPP框架中所有的连接、登入、注册、授权、失去连接等操作的回调都是通过XMPPStream来管理；<br>2.使用XMPP开发即时通信，大部分功能都是通过回调XMPPStreamDelegate协议中的方法来实现。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/iOS/" rel="tag"># iOS</a>
+              <a href="/tags/XMPP/" rel="tag"># XMPP</a>
+              <a href="/tags/%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF/" rel="tag"># 即时通讯</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2016/08/01/iOS%20%E5%8D%B3%E6%97%B6%E9%80%9A%E4%BF%A1%E7%B3%BB%E5%88%97%E4%B9%8BXMPP%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="prev" title="iOS 即时通信系列之XMPP搭建本地服务器">
+      <i class="fa fa-chevron-left"></i> iOS 即时通信系列之XMPP搭建本地服务器
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2016/08/12/iOS%20CocoaPods%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" rel="next" title="iOS CocoaPods安装及使用教程">
+      iOS CocoaPods安装及使用教程 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="DH-Fantasy"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">DH-Fantasy</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DH-Fantasy</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
