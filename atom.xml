@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>DH-Fantasy</title>
-  
+  <icon>https://dh-fantasy.github.io/icon.png</icon>
   <subtitle>勇于探索未知领域，不断提升自己。</subtitle>
-  <link href="http://example.com/atom.xml" rel="self"/>
+  <link href="https://dh-fantasy.github.io/atom.xml" rel="self"/>
   
-  <link href="http://example.com/"/>
+  <link href="https://dh-fantasy.github.io/"/>
   <updated>2020-09-26T14:04:48.592Z</updated>
-  <id>http://example.com/</id>
+  <id>https://dh-fantasy.github.io/</id>
   
   <author>
     <name>DH-Fantasy</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>iOS iPv6审核被拒</title>
-    <link href="http://example.com/2019/01/06/iOS%20iPv6%E5%AE%A1%E6%A0%B8%E8%A2%AB%E6%8B%92/"/>
-    <id>http://example.com/2019/01/06/iOS%20iPv6%E5%AE%A1%E6%A0%B8%E8%A2%AB%E6%8B%92/</id>
+    <link href="https://dh-fantasy.github.io/2019/01/06/iOS%20iPv6%E5%AE%A1%E6%A0%B8%E8%A2%AB%E6%8B%92/"/>
+    <id>https://dh-fantasy.github.io/2019/01/06/iOS%20iPv6%E5%AE%A1%E6%A0%B8%E8%A2%AB%E6%8B%92/</id>
     <published>2019-01-06T10:30:15.000Z</published>
     <updated>2020-09-26T14:04:48.592Z</updated>
     
@@ -34,21 +34,21 @@
     
     
     
-    <category term="iOS" scheme="http://example.com/categories/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/categories/iOS/"/>
     
     
-    <category term="iOS" scheme="http://example.com/tags/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/tags/iOS/"/>
     
-    <category term="审核" scheme="http://example.com/tags/%E5%AE%A1%E6%A0%B8/"/>
+    <category term="审核" scheme="https://dh-fantasy.github.io/tags/%E5%AE%A1%E6%A0%B8/"/>
     
-    <category term="iPv6" scheme="http://example.com/tags/iPv6/"/>
+    <category term="iPv6" scheme="https://dh-fantasy.github.io/tags/iPv6/"/>
     
   </entry>
   
   <entry>
     <title>iOS 侧滑抽屉效果</title>
-    <link href="http://example.com/2017/11/05/iOS%20%E4%BE%A7%E6%BB%91%E6%8A%BD%E5%B1%89%E6%95%88%E6%9E%9C/"/>
-    <id>http://example.com/2017/11/05/iOS%20%E4%BE%A7%E6%BB%91%E6%8A%BD%E5%B1%89%E6%95%88%E6%9E%9C/</id>
+    <link href="https://dh-fantasy.github.io/2017/11/05/iOS%20%E4%BE%A7%E6%BB%91%E6%8A%BD%E5%B1%89%E6%95%88%E6%9E%9C/"/>
+    <id>https://dh-fantasy.github.io/2017/11/05/iOS%20%E4%BE%A7%E6%BB%91%E6%8A%BD%E5%B1%89%E6%95%88%E6%9E%9C/</id>
     <published>2017-11-05T12:30:53.000Z</published>
     <updated>2020-09-26T14:06:41.489Z</updated>
     
@@ -58,19 +58,19 @@
     
     
     
-    <category term="iOS" scheme="http://example.com/categories/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/categories/iOS/"/>
     
     
-    <category term="iOS" scheme="http://example.com/tags/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/tags/iOS/"/>
     
-    <category term="侧滑抽屉" scheme="http://example.com/tags/%E4%BE%A7%E6%BB%91%E6%8A%BD%E5%B1%89/"/>
+    <category term="侧滑抽屉" scheme="https://dh-fantasy.github.io/tags/%E4%BE%A7%E6%BB%91%E6%8A%BD%E5%B1%89/"/>
     
   </entry>
   
   <entry>
     <title>iOS 同步服务器时间</title>
-    <link href="http://example.com/2017/08/12/iOS%20%E5%90%8C%E6%AD%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%B6%E9%97%B4/"/>
-    <id>http://example.com/2017/08/12/iOS%20%E5%90%8C%E6%AD%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%B6%E9%97%B4/</id>
+    <link href="https://dh-fantasy.github.io/2017/08/12/iOS%20%E5%90%8C%E6%AD%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%B6%E9%97%B4/"/>
+    <id>https://dh-fantasy.github.io/2017/08/12/iOS%20%E5%90%8C%E6%AD%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%B6%E9%97%B4/</id>
     <published>2017-08-12T14:38:15.000Z</published>
     <updated>2020-09-26T14:05:15.826Z</updated>
     
@@ -86,19 +86,19 @@
     
     
     
-    <category term="iOS" scheme="http://example.com/categories/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/categories/iOS/"/>
     
     
-    <category term="iOS" scheme="http://example.com/tags/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/tags/iOS/"/>
     
-    <category term="时间同步" scheme="http://example.com/tags/%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5/"/>
+    <category term="时间同步" scheme="https://dh-fantasy.github.io/tags/%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5/"/>
     
   </entry>
   
   <entry>
     <title>iOS 使用NJKWebViewProgress做webview进度条（加载网页时获取加载进度）</title>
-    <link href="http://example.com/2017/03/26/iOS%20%E4%BD%BF%E7%94%A8NJKWebViewProgress%E5%81%9Awebview%E8%BF%9B%E5%BA%A6%E6%9D%A1%EF%BC%88%E5%8A%A0%E8%BD%BD%E7%BD%91%E9%A1%B5%E6%97%B6%E8%8E%B7%E5%8F%96%E5%8A%A0%E8%BD%BD%E8%BF%9B%E5%BA%A6%EF%BC%89/"/>
-    <id>http://example.com/2017/03/26/iOS%20%E4%BD%BF%E7%94%A8NJKWebViewProgress%E5%81%9Awebview%E8%BF%9B%E5%BA%A6%E6%9D%A1%EF%BC%88%E5%8A%A0%E8%BD%BD%E7%BD%91%E9%A1%B5%E6%97%B6%E8%8E%B7%E5%8F%96%E5%8A%A0%E8%BD%BD%E8%BF%9B%E5%BA%A6%EF%BC%89/</id>
+    <link href="https://dh-fantasy.github.io/2017/03/26/iOS%20%E4%BD%BF%E7%94%A8NJKWebViewProgress%E5%81%9Awebview%E8%BF%9B%E5%BA%A6%E6%9D%A1%EF%BC%88%E5%8A%A0%E8%BD%BD%E7%BD%91%E9%A1%B5%E6%97%B6%E8%8E%B7%E5%8F%96%E5%8A%A0%E8%BD%BD%E8%BF%9B%E5%BA%A6%EF%BC%89/"/>
+    <id>https://dh-fantasy.github.io/2017/03/26/iOS%20%E4%BD%BF%E7%94%A8NJKWebViewProgress%E5%81%9Awebview%E8%BF%9B%E5%BA%A6%E6%9D%A1%EF%BC%88%E5%8A%A0%E8%BD%BD%E7%BD%91%E9%A1%B5%E6%97%B6%E8%8E%B7%E5%8F%96%E5%8A%A0%E8%BD%BD%E8%BF%9B%E5%BA%A6%EF%BC%89/</id>
     <published>2017-03-26T15:54:45.000Z</published>
     <updated>2020-09-26T14:05:28.838Z</updated>
     
@@ -108,19 +108,19 @@
     
     
     
-    <category term="iOS" scheme="http://example.com/categories/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/categories/iOS/"/>
     
     
-    <category term="iOS" scheme="http://example.com/tags/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/tags/iOS/"/>
     
-    <category term="WebView" scheme="http://example.com/tags/WebView/"/>
+    <category term="WebView" scheme="https://dh-fantasy.github.io/tags/WebView/"/>
     
   </entry>
   
   <entry>
     <title>iOS 信号量机制</title>
-    <link href="http://example.com/2017/03/19/iOS%20%E4%BF%A1%E5%8F%B7%E9%87%8F%E6%9C%BA%E5%88%B6/"/>
-    <id>http://example.com/2017/03/19/iOS%20%E4%BF%A1%E5%8F%B7%E9%87%8F%E6%9C%BA%E5%88%B6/</id>
+    <link href="https://dh-fantasy.github.io/2017/03/19/iOS%20%E4%BF%A1%E5%8F%B7%E9%87%8F%E6%9C%BA%E5%88%B6/"/>
+    <id>https://dh-fantasy.github.io/2017/03/19/iOS%20%E4%BF%A1%E5%8F%B7%E9%87%8F%E6%9C%BA%E5%88%B6/</id>
     <published>2017-03-19T15:59:52.000Z</published>
     <updated>2020-09-26T14:05:07.863Z</updated>
     
@@ -132,19 +132,19 @@
     
     
     
-    <category term="iOS" scheme="http://example.com/categories/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/categories/iOS/"/>
     
     
-    <category term="iOS" scheme="http://example.com/tags/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/tags/iOS/"/>
     
-    <category term="信号量" scheme="http://example.com/tags/%E4%BF%A1%E5%8F%B7%E9%87%8F/"/>
+    <category term="信号量" scheme="https://dh-fantasy.github.io/tags/%E4%BF%A1%E5%8F%B7%E9%87%8F/"/>
     
   </entry>
   
   <entry>
     <title>iOS 常用断言测试函数</title>
-    <link href="http://example.com/2017/03/13/iOS%20%E5%B8%B8%E7%94%A8%E6%96%AD%E8%A8%80%E6%B5%8B%E8%AF%95%E5%87%BD%E6%95%B0/"/>
-    <id>http://example.com/2017/03/13/iOS%20%E5%B8%B8%E7%94%A8%E6%96%AD%E8%A8%80%E6%B5%8B%E8%AF%95%E5%87%BD%E6%95%B0/</id>
+    <link href="https://dh-fantasy.github.io/2017/03/13/iOS%20%E5%B8%B8%E7%94%A8%E6%96%AD%E8%A8%80%E6%B5%8B%E8%AF%95%E5%87%BD%E6%95%B0/"/>
+    <id>https://dh-fantasy.github.io/2017/03/13/iOS%20%E5%B8%B8%E7%94%A8%E6%96%AD%E8%A8%80%E6%B5%8B%E8%AF%95%E5%87%BD%E6%95%B0/</id>
     <published>2017-03-13T15:38:22.000Z</published>
     <updated>2020-09-26T14:06:34.345Z</updated>
     
@@ -159,21 +159,21 @@
     
     
     
-    <category term="iOS" scheme="http://example.com/categories/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/categories/iOS/"/>
     
     
-    <category term="iOS" scheme="http://example.com/tags/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/tags/iOS/"/>
     
-    <category term="测试" scheme="http://example.com/tags/%E6%B5%8B%E8%AF%95/"/>
+    <category term="测试" scheme="https://dh-fantasy.github.io/tags/%E6%B5%8B%E8%AF%95/"/>
     
-    <category term="断言函数" scheme="http://example.com/tags/%E6%96%AD%E8%A8%80%E5%87%BD%E6%95%B0/"/>
+    <category term="断言函数" scheme="https://dh-fantasy.github.io/tags/%E6%96%AD%E8%A8%80%E5%87%BD%E6%95%B0/"/>
     
   </entry>
   
   <entry>
     <title>iOS NSDate 相关知识整理</title>
-    <link href="http://example.com/2017/03/05/iOS%20NSDate%20%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/"/>
-    <id>http://example.com/2017/03/05/iOS%20NSDate%20%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/</id>
+    <link href="https://dh-fantasy.github.io/2017/03/05/iOS%20NSDate%20%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/"/>
+    <id>https://dh-fantasy.github.io/2017/03/05/iOS%20NSDate%20%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/</id>
     <published>2017-03-05T14:03:56.000Z</published>
     <updated>2020-09-26T14:04:40.940Z</updated>
     
@@ -183,19 +183,19 @@
     
     
     
-    <category term="iOS" scheme="http://example.com/categories/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/categories/iOS/"/>
     
     
-    <category term="iOS" scheme="http://example.com/tags/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/tags/iOS/"/>
     
-    <category term="NSDate" scheme="http://example.com/tags/NSDate/"/>
+    <category term="NSDate" scheme="https://dh-fantasy.github.io/tags/NSDate/"/>
     
   </entry>
   
   <entry>
     <title>iOS iCarousel实现视图水平滑动（中间放大，两边缩小）选择影片效果</title>
-    <link href="http://example.com/2017/02/19/iOS%20iCarousel%E5%AE%9E%E7%8E%B0%E8%A7%86%E5%9B%BE%E6%B0%B4%E5%B9%B3%E6%BB%91%E5%8A%A8%EF%BC%88%E4%B8%AD%E9%97%B4%E6%94%BE%E5%A4%A7%EF%BC%8C%E4%B8%A4%E8%BE%B9%E7%BC%A9%E5%B0%8F%EF%BC%89%E9%80%89%E6%8B%A9%E5%BD%B1%E7%89%87%E6%95%88%E6%9E%9C/"/>
-    <id>http://example.com/2017/02/19/iOS%20iCarousel%E5%AE%9E%E7%8E%B0%E8%A7%86%E5%9B%BE%E6%B0%B4%E5%B9%B3%E6%BB%91%E5%8A%A8%EF%BC%88%E4%B8%AD%E9%97%B4%E6%94%BE%E5%A4%A7%EF%BC%8C%E4%B8%A4%E8%BE%B9%E7%BC%A9%E5%B0%8F%EF%BC%89%E9%80%89%E6%8B%A9%E5%BD%B1%E7%89%87%E6%95%88%E6%9E%9C/</id>
+    <link href="https://dh-fantasy.github.io/2017/02/19/iOS%20iCarousel%E5%AE%9E%E7%8E%B0%E8%A7%86%E5%9B%BE%E6%B0%B4%E5%B9%B3%E6%BB%91%E5%8A%A8%EF%BC%88%E4%B8%AD%E9%97%B4%E6%94%BE%E5%A4%A7%EF%BC%8C%E4%B8%A4%E8%BE%B9%E7%BC%A9%E5%B0%8F%EF%BC%89%E9%80%89%E6%8B%A9%E5%BD%B1%E7%89%87%E6%95%88%E6%9E%9C/"/>
+    <id>https://dh-fantasy.github.io/2017/02/19/iOS%20iCarousel%E5%AE%9E%E7%8E%B0%E8%A7%86%E5%9B%BE%E6%B0%B4%E5%B9%B3%E6%BB%91%E5%8A%A8%EF%BC%88%E4%B8%AD%E9%97%B4%E6%94%BE%E5%A4%A7%EF%BC%8C%E4%B8%A4%E8%BE%B9%E7%BC%A9%E5%B0%8F%EF%BC%89%E9%80%89%E6%8B%A9%E5%BD%B1%E7%89%87%E6%95%88%E6%9E%9C/</id>
     <published>2017-02-19T15:17:28.000Z</published>
     <updated>2020-09-26T14:04:55.593Z</updated>
     
@@ -205,21 +205,21 @@
     
     
     
-    <category term="iOS" scheme="http://example.com/categories/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/categories/iOS/"/>
     
     
-    <category term="iOS" scheme="http://example.com/tags/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/tags/iOS/"/>
     
-    <category term="iCarousel" scheme="http://example.com/tags/iCarousel/"/>
+    <category term="iCarousel" scheme="https://dh-fantasy.github.io/tags/iCarousel/"/>
     
-    <category term="第三方" scheme="http://example.com/tags/%E7%AC%AC%E4%B8%89%E6%96%B9/"/>
+    <category term="第三方" scheme="https://dh-fantasy.github.io/tags/%E7%AC%AC%E4%B8%89%E6%96%B9/"/>
     
   </entry>
   
   <entry>
     <title>iOS 使用自带视频播放器播放视频</title>
-    <link href="http://example.com/2017/02/12/iOS%20%E4%BD%BF%E7%94%A8%E8%87%AA%E5%B8%A6%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%99%A8%E6%92%AD%E6%94%BE%E8%A7%86%E9%A2%91%20/"/>
-    <id>http://example.com/2017/02/12/iOS%20%E4%BD%BF%E7%94%A8%E8%87%AA%E5%B8%A6%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%99%A8%E6%92%AD%E6%94%BE%E8%A7%86%E9%A2%91%20/</id>
+    <link href="https://dh-fantasy.github.io/2017/02/12/iOS%20%E4%BD%BF%E7%94%A8%E8%87%AA%E5%B8%A6%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%99%A8%E6%92%AD%E6%94%BE%E8%A7%86%E9%A2%91%20/"/>
+    <id>https://dh-fantasy.github.io/2017/02/12/iOS%20%E4%BD%BF%E7%94%A8%E8%87%AA%E5%B8%A6%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%99%A8%E6%92%AD%E6%94%BE%E8%A7%86%E9%A2%91%20/</id>
     <published>2017-02-12T13:15:34.000Z</published>
     <updated>2020-09-26T14:00:02.326Z</updated>
     
@@ -235,19 +235,19 @@
     
     
     
-    <category term="iOS" scheme="http://example.com/categories/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/categories/iOS/"/>
     
     
-    <category term="iOS" scheme="http://example.com/tags/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/tags/iOS/"/>
     
-    <category term="Video" scheme="http://example.com/tags/Video/"/>
+    <category term="Video" scheme="https://dh-fantasy.github.io/tags/Video/"/>
     
   </entry>
   
   <entry>
     <title>iOS UIButton 的 titleLabel</title>
-    <link href="http://example.com/2017/02/05/iOS%20UIButton%20%E7%9A%84%20titleLabel/"/>
-    <id>http://example.com/2017/02/05/iOS%20UIButton%20%E7%9A%84%20titleLabel/</id>
+    <link href="https://dh-fantasy.github.io/2017/02/05/iOS%20UIButton%20%E7%9A%84%20titleLabel/"/>
+    <id>https://dh-fantasy.github.io/2017/02/05/iOS%20UIButton%20%E7%9A%84%20titleLabel/</id>
     <published>2017-02-05T15:58:35.000Z</published>
     <updated>2020-09-26T14:04:25.000Z</updated>
     
@@ -256,19 +256,19 @@
     
     
     
-    <category term="iOS" scheme="http://example.com/categories/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/categories/iOS/"/>
     
     
-    <category term="iOS" scheme="http://example.com/tags/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/tags/iOS/"/>
     
-    <category term="UIButton" scheme="http://example.com/tags/UIButton/"/>
+    <category term="UIButton" scheme="https://dh-fantasy.github.io/tags/UIButton/"/>
     
   </entry>
   
   <entry>
     <title>iOS 定位(CoreLocation)</title>
-    <link href="http://example.com/2017/01/29/iOS%20%E5%AE%9A%E4%BD%8D(CoreLocation)/"/>
-    <id>http://example.com/2017/01/29/iOS%20%E5%AE%9A%E4%BD%8D(CoreLocation)/</id>
+    <link href="https://dh-fantasy.github.io/2017/01/29/iOS%20%E5%AE%9A%E4%BD%8D(CoreLocation)/"/>
+    <id>https://dh-fantasy.github.io/2017/01/29/iOS%20%E5%AE%9A%E4%BD%8D(CoreLocation)/</id>
     <published>2017-01-29T14:32:17.000Z</published>
     <updated>2020-09-26T14:01:12.815Z</updated>
     
@@ -280,19 +280,19 @@
     
     
     
-    <category term="iOS" scheme="http://example.com/categories/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/categories/iOS/"/>
     
     
-    <category term="iOS" scheme="http://example.com/tags/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/tags/iOS/"/>
     
-    <category term="定位" scheme="http://example.com/tags/%E5%AE%9A%E4%BD%8D/"/>
+    <category term="定位" scheme="https://dh-fantasy.github.io/tags/%E5%AE%9A%E4%BD%8D/"/>
     
   </entry>
   
   <entry>
     <title>iOS OC编码规范指南</title>
-    <link href="http://example.com/2017/01/23/iOS%20OC%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83%E6%8C%87%E5%8D%97/"/>
-    <id>http://example.com/2017/01/23/iOS%20OC%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83%E6%8C%87%E5%8D%97/</id>
+    <link href="https://dh-fantasy.github.io/2017/01/23/iOS%20OC%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83%E6%8C%87%E5%8D%97/"/>
+    <id>https://dh-fantasy.github.io/2017/01/23/iOS%20OC%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83%E6%8C%87%E5%8D%97/</id>
     <published>2017-01-22T16:00:45.000Z</published>
     <updated>2020-09-26T14:04:33.345Z</updated>
     
@@ -309,19 +309,19 @@
     
     
     
-    <category term="iOS" scheme="http://example.com/categories/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/categories/iOS/"/>
     
     
-    <category term="iOS" scheme="http://example.com/tags/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/tags/iOS/"/>
     
-    <category term="编码规范" scheme="http://example.com/tags/%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/"/>
+    <category term="编码规范" scheme="https://dh-fantasy.github.io/tags/%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/"/>
     
   </entry>
   
   <entry>
     <title>iOS 数据解析之使用TFHpple解析html</title>
-    <link href="http://example.com/2017/01/15/iOS%20%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90%E4%B9%8B%E4%BD%BF%E7%94%A8TFHpple%E8%A7%A3%E6%9E%90html/"/>
-    <id>http://example.com/2017/01/15/iOS%20%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90%E4%B9%8B%E4%BD%BF%E7%94%A8TFHpple%E8%A7%A3%E6%9E%90html/</id>
+    <link href="https://dh-fantasy.github.io/2017/01/15/iOS%20%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90%E4%B9%8B%E4%BD%BF%E7%94%A8TFHpple%E8%A7%A3%E6%9E%90html/"/>
+    <id>https://dh-fantasy.github.io/2017/01/15/iOS%20%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90%E4%B9%8B%E4%BD%BF%E7%94%A8TFHpple%E8%A7%A3%E6%9E%90html/</id>
     <published>2017-01-15T10:27:04.000Z</published>
     <updated>2020-09-26T14:05:21.922Z</updated>
     
@@ -331,19 +331,19 @@
     
     
     
-    <category term="iOS" scheme="http://example.com/categories/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/categories/iOS/"/>
     
     
-    <category term="iOS" scheme="http://example.com/tags/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/tags/iOS/"/>
     
-    <category term="数据解析" scheme="http://example.com/tags/%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90/"/>
+    <category term="数据解析" scheme="https://dh-fantasy.github.io/tags/%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90/"/>
     
   </entry>
   
   <entry>
     <title>Git 常用命令</title>
-    <link href="http://example.com/2017/01/08/Git%20%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
-    <id>http://example.com/2017/01/08/Git%20%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</id>
+    <link href="https://dh-fantasy.github.io/2017/01/08/Git%20%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    <id>https://dh-fantasy.github.io/2017/01/08/Git%20%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</id>
     <published>2017-01-08T15:42:42.000Z</published>
     <updated>2020-09-26T14:03:20.873Z</updated>
     
@@ -353,19 +353,19 @@
     
     
     
-    <category term="Git" scheme="http://example.com/categories/Git/"/>
+    <category term="Git" scheme="https://dh-fantasy.github.io/categories/Git/"/>
     
     
-    <category term="Git" scheme="http://example.com/tags/Git/"/>
+    <category term="Git" scheme="https://dh-fantasy.github.io/tags/Git/"/>
     
-    <category term="常用命令" scheme="http://example.com/tags/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    <category term="常用命令" scheme="https://dh-fantasy.github.io/tags/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
     
   </entry>
   
   <entry>
     <title>iOS 代码关闭App、配置后台运行模式</title>
-    <link href="http://example.com/2016/12/22/iOS%20%E4%BB%A3%E7%A0%81%E5%85%B3%E9%97%ADApp%E3%80%81%E9%85%8D%E7%BD%AE%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://example.com/2016/12/22/iOS%20%E4%BB%A3%E7%A0%81%E5%85%B3%E9%97%ADApp%E3%80%81%E9%85%8D%E7%BD%AE%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F/</id>
+    <link href="https://dh-fantasy.github.io/2016/12/22/iOS%20%E4%BB%A3%E7%A0%81%E5%85%B3%E9%97%ADApp%E3%80%81%E9%85%8D%E7%BD%AE%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F/"/>
+    <id>https://dh-fantasy.github.io/2016/12/22/iOS%20%E4%BB%A3%E7%A0%81%E5%85%B3%E9%97%ADApp%E3%80%81%E9%85%8D%E7%BD%AE%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F/</id>
     <published>2016-12-22T12:09:30.000Z</published>
     <updated>2020-09-26T14:01:21.123Z</updated>
     
@@ -374,21 +374,21 @@
     
     
     
-    <category term="iOS" scheme="http://example.com/categories/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/categories/iOS/"/>
     
     
-    <category term="iOS" scheme="http://example.com/tags/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/tags/iOS/"/>
     
-    <category term="后台运行" scheme="http://example.com/tags/%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C/"/>
+    <category term="后台运行" scheme="https://dh-fantasy.github.io/tags/%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C/"/>
     
-    <category term="关闭App" scheme="http://example.com/tags/%E5%85%B3%E9%97%ADApp/"/>
+    <category term="关闭App" scheme="https://dh-fantasy.github.io/tags/%E5%85%B3%E9%97%ADApp/"/>
     
   </entry>
   
   <entry>
     <title>项目托管到GitHub及简单使用</title>
-    <link href="http://example.com/2016/12/13/%E9%A1%B9%E7%9B%AE%E6%89%98%E7%AE%A1%E5%88%B0GitHub%E5%8F%8A%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/"/>
-    <id>http://example.com/2016/12/13/%E9%A1%B9%E7%9B%AE%E6%89%98%E7%AE%A1%E5%88%B0GitHub%E5%8F%8A%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</id>
+    <link href="https://dh-fantasy.github.io/2016/12/13/%E9%A1%B9%E7%9B%AE%E6%89%98%E7%AE%A1%E5%88%B0GitHub%E5%8F%8A%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/"/>
+    <id>https://dh-fantasy.github.io/2016/12/13/%E9%A1%B9%E7%9B%AE%E6%89%98%E7%AE%A1%E5%88%B0GitHub%E5%8F%8A%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</id>
     <published>2016-12-13T14:00:13.000Z</published>
     <updated>2020-09-26T14:04:03.265Z</updated>
     
@@ -398,21 +398,21 @@
     
     
     
-    <category term="Git" scheme="http://example.com/categories/Git/"/>
+    <category term="Git" scheme="https://dh-fantasy.github.io/categories/Git/"/>
     
     
-    <category term="Git" scheme="http://example.com/tags/Git/"/>
+    <category term="Git" scheme="https://dh-fantasy.github.io/tags/Git/"/>
     
-    <category term="Github" scheme="http://example.com/tags/Github/"/>
+    <category term="Github" scheme="https://dh-fantasy.github.io/tags/Github/"/>
     
-    <category term="项目托管" scheme="http://example.com/tags/%E9%A1%B9%E7%9B%AE%E6%89%98%E7%AE%A1/"/>
+    <category term="项目托管" scheme="https://dh-fantasy.github.io/tags/%E9%A1%B9%E7%9B%AE%E6%89%98%E7%AE%A1/"/>
     
   </entry>
   
   <entry>
     <title>iOS CocoaPods安装及使用教程</title>
-    <link href="http://example.com/2016/08/12/iOS%20CocoaPods%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/"/>
-    <id>http://example.com/2016/08/12/iOS%20CocoaPods%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</id>
+    <link href="https://dh-fantasy.github.io/2016/08/12/iOS%20CocoaPods%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/"/>
+    <id>https://dh-fantasy.github.io/2016/08/12/iOS%20CocoaPods%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</id>
     <published>2016-08-12T14:45:56.000Z</published>
     <updated>2020-09-26T14:05:01.036Z</updated>
     
@@ -425,19 +425,19 @@ ruby 2.3.1p112 (2016-04-26 revision 54768) [x86_64-darwin15]&lt;/code&gt;&lt;/pr
     
     
     
-    <category term="iOS" scheme="http://example.com/categories/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/categories/iOS/"/>
     
     
-    <category term="iOS" scheme="http://example.com/tags/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/tags/iOS/"/>
     
-    <category term="CocoaPods" scheme="http://example.com/tags/CocoaPods/"/>
+    <category term="CocoaPods" scheme="https://dh-fantasy.github.io/tags/CocoaPods/"/>
     
   </entry>
   
   <entry>
     <title>iOS 即时通信系列之XMPP登入、注册、聊天</title>
-    <link href="http://example.com/2016/08/01/iOS%20%E5%8D%B3%E6%97%B6%E9%80%9A%E4%BF%A1%E7%B3%BB%E5%88%97%E4%B9%8BXMPP%E7%99%BB%E5%85%A5%E3%80%81%E6%B3%A8%E5%86%8C%E3%80%81%E8%81%8A%E5%A4%A9/"/>
-    <id>http://example.com/2016/08/01/iOS%20%E5%8D%B3%E6%97%B6%E9%80%9A%E4%BF%A1%E7%B3%BB%E5%88%97%E4%B9%8BXMPP%E7%99%BB%E5%85%A5%E3%80%81%E6%B3%A8%E5%86%8C%E3%80%81%E8%81%8A%E5%A4%A9/</id>
+    <link href="https://dh-fantasy.github.io/2016/08/01/iOS%20%E5%8D%B3%E6%97%B6%E9%80%9A%E4%BF%A1%E7%B3%BB%E5%88%97%E4%B9%8BXMPP%E7%99%BB%E5%85%A5%E3%80%81%E6%B3%A8%E5%86%8C%E3%80%81%E8%81%8A%E5%A4%A9/"/>
+    <id>https://dh-fantasy.github.io/2016/08/01/iOS%20%E5%8D%B3%E6%97%B6%E9%80%9A%E4%BF%A1%E7%B3%BB%E5%88%97%E4%B9%8BXMPP%E7%99%BB%E5%85%A5%E3%80%81%E6%B3%A8%E5%86%8C%E3%80%81%E8%81%8A%E5%A4%A9/</id>
     <published>2016-08-01T08:32:09.000Z</published>
     <updated>2020-09-26T14:00:14.239Z</updated>
     
@@ -448,21 +448,21 @@ ruby 2.3.1p112 (2016-04-26 revision 54768) [x86_64-darwin15]&lt;/code&gt;&lt;/pr
     
     
     
-    <category term="iOS" scheme="http://example.com/categories/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/categories/iOS/"/>
     
     
-    <category term="iOS" scheme="http://example.com/tags/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/tags/iOS/"/>
     
-    <category term="XMPP" scheme="http://example.com/tags/XMPP/"/>
+    <category term="XMPP" scheme="https://dh-fantasy.github.io/tags/XMPP/"/>
     
-    <category term="即时通讯" scheme="http://example.com/tags/%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF/"/>
+    <category term="即时通讯" scheme="https://dh-fantasy.github.io/tags/%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF/"/>
     
   </entry>
   
   <entry>
     <title>iOS 即时通信系列之XMPP搭建本地服务器</title>
-    <link href="http://example.com/2016/08/01/iOS%20%E5%8D%B3%E6%97%B6%E9%80%9A%E4%BF%A1%E7%B3%BB%E5%88%97%E4%B9%8BXMPP%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    <id>http://example.com/2016/08/01/iOS%20%E5%8D%B3%E6%97%B6%E9%80%9A%E4%BF%A1%E7%B3%BB%E5%88%97%E4%B9%8BXMPP%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/</id>
+    <link href="https://dh-fantasy.github.io/2016/08/01/iOS%20%E5%8D%B3%E6%97%B6%E9%80%9A%E4%BF%A1%E7%B3%BB%E5%88%97%E4%B9%8BXMPP%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    <id>https://dh-fantasy.github.io/2016/08/01/iOS%20%E5%8D%B3%E6%97%B6%E9%80%9A%E4%BF%A1%E7%B3%BB%E5%88%97%E4%B9%8BXMPP%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/</id>
     <published>2016-08-01T08:16:26.000Z</published>
     <updated>2020-09-26T14:00:48.398Z</updated>
     
@@ -478,21 +478,21 @@ ruby 2.3.1p112 (2016-04-26 revision 54768) [x86_64-darwin15]&lt;/code&gt;&lt;/pr
     
     
     
-    <category term="iOS" scheme="http://example.com/categories/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/categories/iOS/"/>
     
     
-    <category term="iOS" scheme="http://example.com/tags/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/tags/iOS/"/>
     
-    <category term="XMPP" scheme="http://example.com/tags/XMPP/"/>
+    <category term="XMPP" scheme="https://dh-fantasy.github.io/tags/XMPP/"/>
     
-    <category term="即时通讯" scheme="http://example.com/tags/%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF/"/>
+    <category term="即时通讯" scheme="https://dh-fantasy.github.io/tags/%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF/"/>
     
   </entry>
   
   <entry>
     <title>iOS 获取本地视频的缩略图</title>
-    <link href="http://example.com/2016/07/14/iOS%20%E8%8E%B7%E5%8F%96%E6%9C%AC%E5%9C%B0%E8%A7%86%E9%A2%91%E7%9A%84%E7%BC%A9%E7%95%A5%E5%9B%BE/"/>
-    <id>http://example.com/2016/07/14/iOS%20%E8%8E%B7%E5%8F%96%E6%9C%AC%E5%9C%B0%E8%A7%86%E9%A2%91%E7%9A%84%E7%BC%A9%E7%95%A5%E5%9B%BE/</id>
+    <link href="https://dh-fantasy.github.io/2016/07/14/iOS%20%E8%8E%B7%E5%8F%96%E6%9C%AC%E5%9C%B0%E8%A7%86%E9%A2%91%E7%9A%84%E7%BC%A9%E7%95%A5%E5%9B%BE/"/>
+    <id>https://dh-fantasy.github.io/2016/07/14/iOS%20%E8%8E%B7%E5%8F%96%E6%9C%AC%E5%9C%B0%E8%A7%86%E9%A2%91%E7%9A%84%E7%BC%A9%E7%95%A5%E5%9B%BE/</id>
     <published>2016-07-14T04:42:57.000Z</published>
     <updated>2020-09-26T14:00:59.968Z</updated>
     
@@ -508,12 +508,12 @@ ruby 2.3.1p112 (2016-04-26 revision 54768) [x86_64-darwin15]&lt;/code&gt;&lt;/pr
     
     
     
-    <category term="iOS" scheme="http://example.com/categories/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/categories/iOS/"/>
     
     
-    <category term="iOS" scheme="http://example.com/tags/iOS/"/>
+    <category term="iOS" scheme="https://dh-fantasy.github.io/tags/iOS/"/>
     
-    <category term="视频缩略图" scheme="http://example.com/tags/%E8%A7%86%E9%A2%91%E7%BC%A9%E7%95%A5%E5%9B%BE/"/>
+    <category term="视频缩略图" scheme="https://dh-fantasy.github.io/tags/%E8%A7%86%E9%A2%91%E7%BC%A9%E7%95%A5%E5%9B%BE/"/>
     
   </entry>
   
